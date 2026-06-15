@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shalom Josías Marsjones</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:      #1B2A3B;
+      --amber:     #E8A84C;
+      --cream:     #F5EFE6;
+      --terracotta:#C4714F;
+      --white:     #FFFFFF;
+      --navy-mid:  #243447;
+      --text-muted:#8FA3B8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.25rem 3rem;
+      background: transparent;
+      transition: background 0.4s, backdrop-filter 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(27,42,59,0.92);
+      backdrop-filter: blur(12px);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--amber);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none;
+    }
+    .nav-links a {
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      transition: opacity 0.2s, color 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; color: var(--amber); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 0 3rem;
+      overflow: hidden;
+    }
+    .hero-watermark {
+      position: absolute;
+      right: -2rem; top: 50%;
+      transform: translateY(-52%);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(180px, 28vw, 360px);
+      font-weight: 900;
+      color: rgba(232,168,76,0.06);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.02em;
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1.5rem;
+    }
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 7.5rem);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      margin-bottom: 0.25rem;
+    }
+    .hero-name em {
+      font-style: italic;
+      color: var(--amber);
+    }
+    .hero-tagline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      font-style: italic;
+      color: var(--text-muted);
+      margin-top: 1.25rem;
+      margin-bottom: 2.5rem;
+      letter-spacing: 0.02em;
+    }
+    .hero-tagline span { color: var(--amber); }
+    .hero-desc {
+      max-width: 480px;
+      font-size: 1rem;
+      line-height: 1.75;
+      color: rgba(245,239,230,0.75);
+      margin-bottom: 3rem;
+    }
+    .hero-actions {
+      display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;
+    }
+    .btn-primary {
+      background: var(--amber);
+      color: var(--navy);
+      padding: 0.8rem 2rem;
+      border-radius: 2px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: #f0b85e; transform: translateY(-1px); }
+    .btn-ghost {
+      border: 1px solid rgba(245,239,230,0.3);
+      color: var(--cream);
+      padding: 0.8rem 2rem;
+      border-radius: 2px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--amber); color: var(--amber); }
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; left: 3rem;
+      font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--text-muted);
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .hero-scroll::before {
+      content: ''; display: block;
+      width: 40px; height: 1px; background: var(--text-muted);
+    }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 6rem 3rem; }
+    .section-label {
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--amber);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .section-subtitle {
+      color: rgba(245,239,230,0.65);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 540px;
+      margin-bottom: 3rem;
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      background: var(--cream);
+      color: var(--navy);
+    }
+    .about .section-label { color: var(--terracotta); }
+    .about .section-title { color: var(--navy); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      max-width: 1100px;
+    }
+    .about-text p {
+      color: rgba(27,42,59,0.8);
+      line-height: 1.8;
+      font-size: 1.0rem;
+      margin-bottom: 1.25rem;
+    }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-qualities {
+      display: flex; flex-direction: column; gap: 1.5rem;
+    }
+    .quality {
+      border-left: 2px solid var(--amber);
+      padding-left: 1.25rem;
+    }
+    .quality-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--navy); margin-bottom: 0.3rem;
+    }
+    .quality-desc {
+      font-size: 0.88rem; color: rgba(27,42,59,0.65);
+      line-height: 1.6;
+    }
+
+    /* ── PROJECTS ── */
+    .projects { background: var(--navy); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+    }
+
+    .project-card {
+      background: var(--navy-mid);
+      border: 1px solid rgba(232,168,76,0.12);
+      border-radius: 4px;
+      padding: 2rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex; flex-direction: column;
+      gap: 1rem;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--card-accent, var(--amber));
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .project-card:hover {
+      border-color: rgba(232,168,76,0.35);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+    .project-card:hover::before { opacity: 1; }
+
+    .card-icon {
+      font-size: 2rem;
+      line-height: 1;
+    }
+    .card-tag {
+      font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--card-accent, var(--amber));
+      opacity: 0.85;
+    }
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem; font-weight: 700;
+      color: var(--white);
+      line-height: 1.25;
+    }
+    .card-desc {
+      font-size: 0.88rem;
+      color: rgba(245,239,230,0.6);
+      line-height: 1.65;
+      flex: 1;
+    }
+    .card-status {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .card-status::before {
+      content: '';
+      display: inline-block;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--card-accent, var(--amber));
+      opacity: 0.7;
+    }
+
+    /* KADsuite featured card */
+    .card-featured {
+      grid-column: span 2;
+      flex-direction: row;
+      align-items: center;
+      gap: 2.5rem;
+      background: linear-gradient(135deg, #243447 0%, #1e3050 100%);
+    }
+    .card-featured .card-body { flex: 1; display: flex; flex-direction: column; gap: 1rem; }
+    .card-featured .card-icon { font-size: 3.5rem; }
+    .card-featured .card-title { font-size: 1.75rem; }
+    .card-featured .card-desc { font-size: 0.95rem; }
+    .card-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--amber);
+      text-decoration: none;
+      margin-top: 0.5rem;
+      transition: gap 0.2s;
+    }
+    .card-link:hover { gap: 0.75rem; }
+
+    /* ── CONNECT ── */
+    .connect {
+      background: var(--cream);
+      color: var(--navy);
+    }
+    .connect .section-label { color: var(--terracotta); }
+    .connect .section-title { color: var(--navy); }
+    .connect .section-subtitle { color: rgba(27,42,59,0.65); }
+    .social-links {
+      display: flex; gap: 1.25rem; flex-wrap: wrap;
+    }
+    .social-link {
+      display: flex; align-items: center; gap: 0.75rem;
+      background: var(--white);
+      border: 1px solid rgba(27,42,59,0.12);
+      border-radius: 4px;
+      padding: 0.9rem 1.5rem;
+      text-decoration: none;
+      color: var(--navy);
+      font-size: 0.9rem; font-weight: 500;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+    }
+    .social-link:hover {
+      border-color: var(--amber);
+      box-shadow: 0 4px 20px rgba(232,168,76,0.15);
+      transform: translateY(-2px);
+    }
+    .social-link svg { width: 20px; height: 20px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      padding: 2.5rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid rgba(232,168,76,0.1);
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--amber);
+    }
+    .footer-note {
+      font-size: 0.78rem; color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+    .footer-shalom {
+      font-size: 1.4rem; color: rgba(232,168,76,0.35);
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { padding: 0 1.5rem; }
+      section { padding: 4rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .card-featured { grid-column: span 1; flex-direction: column; }
+      footer { padding: 2rem 1.5rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; }
+    }
+
+    /* ── FADE-IN ── */
+    .fade-up {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a class="nav-logo" href="#">withshalom</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Work</a></li>
+      <li><a href="#connect">Connect</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-watermark">שָׁלוֹם</div>
+    <p class="hero-eyebrow fade-up">withshalom.com</p>
+    <h1 class="hero-name fade-up">
+      Shalom<br><em>Josías</em><br>Marsjones
+    </h1>
+    <p class="hero-tagline fade-up">
+      <span>Dreamer</span> &nbsp;·&nbsp; Builder &nbsp;·&nbsp; <span>Designer</span>
+    </p>
+    <p class="hero-desc fade-up">
+      A portfolio of ideas in motion — spanning software, mechanical design, music, game worlds, and the big questions. Everything here is made with care and a long horizon in mind.
+    </p>
+    <div class="hero-actions fade-up">
+      <a href="#projects" class="btn-primary">Explore the work</a>
+      <a href="#connect" class="btn-ghost">Get in touch</a>
+    </div>
+    <p class="hero-scroll">Scroll to explore</p>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <p class="section-label fade-up">Who I am</p>
+    <h2 class="section-title fade-up">More than one thing,<br>always.</h2>
+    <div class="about-grid fade-up">
+      <div class="about-text">
+        <p>
+          I live at the intersection of the technical and the imaginative. Whether I'm designing a mechanical system, building software, writing music, or sitting with a hard philosophical question, the same instinct drives me — to understand deeply, then create with intention.
+        </p>
+        <p>
+          "Shalom" means peace, completeness, wholeness. It's not just my name — it's the thread that runs through everything I make. I want the things I build to hold together, to mean something, to last.
+        </p>
+        <p>
+          These projects are either in motion or on the horizon. Come back often — this place grows with me.
+        </p>
+      </div>
+      <div class="about-qualities">
+        <div class="quality">
+          <p class="quality-title">Systems thinking</p>
+          <p class="quality-desc">From mechanical tolerances to software architecture, I love understanding how parts relate to wholes.</p>
+        </div>
+        <div class="quality">
+          <p class="quality-title">Made for humans</p>
+          <p class="quality-desc">Every project — technical or creative — is ultimately for people. Warmth and clarity are never optional.</p>
+        </div>
+        <div class="quality">
+          <p class="quality-title">Long-horizon thinking</p>
+          <p class="quality-desc">I'm interested in ideas that endure. Music, theology, good design — things built to outlast the moment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="projects" id="projects">
+    <p class="section-label fade-up">Projects & pursuits</p>
+    <h2 class="section-title fade-up">Things I'm building.</h2>
+    <p class="section-subtitle fade-up">A mix of the shipped, the in-progress, and the dreamed-of. All of it is real.</p>
+
+    <div class="projects-grid">
+
+      <!-- KADsuite — Featured -->
+      <div class="project-card card-featured fade-up" style="--card-accent: #E8A84C;">
+        <div class="card-icon">⬡</div>
+        <div class="card-body">
+          <p class="card-tag">Software · Featured Project</p>
+          <h3 class="card-title">KADsuite</h3>
+          <p class="card-desc">
+            A software project built with care. KADsuite represents the professional software side of my work — follow along on Instagram and visit the site to see what's being built.
+          </p>
+          <div style="display:flex; gap:1.5rem; flex-wrap:wrap; align-items:center;">
+            <a href="https://kadsuite.com" target="_blank" rel="noopener" class="card-link">Visit KADsuite →</a>
+            <a href="https://instagram.com/kadsuite" target="_blank" rel="noopener" class="card-link" style="color: var(--text-muted);">Follow on Instagram →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mechanical Design -->
+      <div class="project-card fade-up" style="--card-accent: #C4714F;">
+        <div class="card-icon">⚙️</div>
+        <p class="card-tag">Mechanical Design</p>
+        <h3 class="card-title">Precision & Form</h3>
+        <p class="card-desc">
+          Mechanical systems designed from the ground up — where engineering rigor meets aesthetic intent. Projects in progress and coming soon.
+        </p>
+        <p class="card-status">In motion</p>
+      </div>
+
+      <!-- Game Design -->
+      <div class="project-card fade-up" style="--card-accent: #7C9E87;">
+        <div class="card-icon">🎲</div>
+        <p class="card-tag">Game Design</p>
+        <h3 class="card-title">Worlds Worth Playing In</h3>
+        <p class="card-desc">
+          Game design is world-building with rules. Exploring mechanics, narrative, and play as creative forms in their own right.
+        </p>
+        <p class="card-status">In development</p>
+      </div>
+
+      <!-- Music -->
+      <div class="project-card fade-up" style="--card-accent: #8A7EC8;">
+        <div class="card-icon">♪</div>
+        <p class="card-tag">Music</p>
+        <h3 class="card-title">Sound & Composition</h3>
+        <p class="card-desc">
+          Music is how I speak when words aren't enough. Compositions, arrangements, and sonic experiments — more to share soon.
+        </p>
+        <p class="card-status">Always in motion</p>
+      </div>
+
+      <!-- Theology / Philosophy / Metaphysics -->
+      <div class="project-card fade-up" style="--card-accent: #B8946A;">
+        <div class="card-icon">✦</div>
+        <p class="card-tag">Theology · Philosophy · Metaphysics</p>
+        <h3 class="card-title">The Big Questions</h3>
+        <p class="card-desc">
+          Why does anything exist? What is goodness? How should we live? These aren't abstract to me — they shape everything else I make.
+        </p>
+        <p class="card-status">Lifelong work</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONNECT -->
+  <section class="connect" id="connect">
+    <p class="section-label fade-up">Let's connect</p>
+    <h2 class="section-title fade-up">Find me here.</h2>
+    <p class="section-subtitle fade-up">
+      Whether you're here for the work, the ideas, or just curious — I'd love to be in touch.
+    </p>
+    <div class="social-links fade-up">
+
+      <!-- LinkedIn -->
+      <a href="https://linkedin.com/in/shalommarsjones" target="_blank" rel="noopener" class="social-link">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+        Shalom Marsjones on LinkedIn
+      </a>
+
+      <!-- KADsuite Instagram -->
+      <a href="https://instagram.com/kadsuite" target="_blank" rel="noopener" class="social-link">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+        </svg>
+        KADsuite on Instagram
+      </a>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-brand">withshalom</span>
+    <span class="footer-note">Shalom Josías Marsjones &nbsp;·&nbsp; Dreamer · Builder · Designer</span>
+    <span class="footer-shalom">שָׁלוֹם</span>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Fade-up on scroll
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    fadeEls.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
