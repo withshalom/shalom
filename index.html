@@ -32,9 +32,9 @@ body{
 
 /* ── HERO ── */
 .hero{
-  min-height:100svh;
+  min-height:auto;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
-  padding:60px 24px 48px;
+  padding:40px 24px 32px;
   text-align:center;
   position:relative;
   background:
@@ -42,6 +42,9 @@ body{
     radial-gradient(ellipse at 20% 80%, rgba(0,180,255,0.04) 0%, transparent 40%),
     var(--bg);
   overflow:hidden;
+}
+@media(min-width:768px){
+  .hero{ padding:60px 24px 48px; }
 }
 /* subtle grid */
 .hero::before{
@@ -53,48 +56,43 @@ body{
   background-size:48px 48px;
 }
 .hero-eyebrow{
-  font-family:var(--fm); font-size:10px; letter-spacing:.3em; text-transform:uppercase;
-  color:rgba(200,169,110,0.5); margin-bottom:18px;
+  font-family:var(--fm); font-size:9px; letter-spacing:.28em; text-transform:uppercase;
+  color:rgba(200,169,110,0.5); margin-bottom:10px;
 }
 .hero-logo{
-  display:flex; flex-direction:column; align-items:center; gap:4px; margin-bottom:24px;
+  display:flex; flex-direction:column; align-items:center; gap:2px; margin-bottom:14px;
 }
 .hero-brand{
-  font-family:var(--fn); font-size:clamp(36px,10vw,72px);
+  font-family:var(--fn); font-size:clamp(40px,11vw,72px);
   letter-spacing:.08em; line-height:.95;
   background:linear-gradient(180deg,var(--gold-b) 0%,var(--gold) 55%,rgba(180,130,60,0.7) 100%);
   -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
 }
 .hero-brand-sub{
-  font-family:var(--fn); font-size:clamp(14px,3.5vw,22px);
+  font-family:var(--fn); font-size:clamp(13px,3vw,22px);
   letter-spacing:.32em; color:rgba(200,169,110,0.5);
 }
-.hero-rule{ width:48px; height:1px; background:var(--border); margin:20px auto; }
+.hero-rule{ width:40px; height:1px; background:var(--border); margin:12px auto; }
 .hero-desc{
-  font-family:var(--fb); font-weight:300; font-size:clamp(14px,2.5vw,18px);
-  line-height:1.7; color:var(--t2); max-width:520px; margin:0 auto 36px;
+  font-family:var(--fb); font-weight:300; font-size:clamp(13px,2.2vw,17px);
+  line-height:1.6; color:var(--t2); max-width:520px; margin:0 auto 22px;
 }
 .hero-cta{
   font-family:var(--fm); font-size:11px; letter-spacing:.2em; text-transform:uppercase;
-  color:var(--gold); border:1px solid rgba(200,169,110,0.3); padding:10px 24px;
+  color:var(--gold); border:1px solid rgba(200,169,110,0.3); padding:9px 22px;
   border-radius:2px; text-decoration:none; display:inline-block;
   transition:background .2s, border-color .2s;
   background:rgba(200,169,110,0.05);
 }
 .hero-cta:hover{ background:rgba(200,169,110,0.1); border-color:rgba(200,169,110,0.6); }
-.hero-scroll{
-  position:absolute; bottom:24px; left:50%; transform:translateX(-50%);
-  font-family:var(--fm); font-size:9px; letter-spacing:.25em; color:rgba(255,255,255,0.18);
-  text-transform:uppercase; animation:scrollBob 2s ease-in-out infinite;
-}
-@keyframes scrollBob{ 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+.hero-scroll{ display:none; }
 
 /* ── SECTION ── */
 .section{
-  padding:72px 0 0;
+  padding:48px 0 0;
 }
 .section-head{
-  text-align:center; padding:0 24px 44px;
+  text-align:center; padding:0 24px 32px;
 }
 .section-label{
   font-family:var(--fm); font-size:9px; letter-spacing:.28em; text-transform:uppercase;
@@ -108,23 +106,42 @@ body{
   width:32px; height:1px; background:rgba(255,255,255,0.12); margin:14px auto 0;
 }
 
-/* ── CARDS GRID ── */
+/* ── CARDS GRID — full reflow, no hard dividers ── */
+.section#work{
+  background-color:var(--bg);
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(180,140,60,0.07) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 100%, rgba(0,160,255,0.03) 0%, transparent 40%),
+    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+  background-size:100% 100%, 100% 100%, 48px 48px, 48px 48px;
+}
 .cards-grid{
   display:grid;
-  grid-template-columns:1fr;
-  gap:0;
-  max-width:480px;
+  grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));
+  gap:24px;
+  max-width:1600px;
   margin:0 auto;
-  padding:0 20px 80px;
+  padding:24px 20px 80px;
 }
-.card-slot{
-  border-bottom:1px solid var(--border);
-  padding:32px 0;
-}
-.card-slot:first-child{ padding-top:0; }
-.card-slot:last-child{ border-bottom:none; }
 
-/* iframe wrapper — one fixed height, same for every card */
+/* portrait-only phones: force single column */
+@media (max-width:600px) and (orientation:portrait){
+  .cards-grid{ grid-template-columns:1fr; }
+}
+
+@media(min-width:768px){
+  .cards-grid{ grid-template-columns:repeat(auto-fill, minmax(340px, 1fr)); gap:28px; padding:32px 32px 80px; }
+}
+@media(min-width:1200px){
+  .cards-grid{ grid-template-columns:repeat(auto-fill, minmax(380px, 1fr)); gap:32px; padding:40px 48px 96px; }
+}
+
+.card-slot{
+  padding:0;
+}
+
+/* iframe wrapper */
 .card-frame{
   width:100%;
   height:480px;
@@ -206,11 +223,20 @@ body{
 
 /* ── CLIENT WORK BANNERS ── */
 .clients{
-  padding:72px 0 0;
+  padding:48px 0 0;
+  background-color:var(--bg);
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(180,140,60,0.07) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 100%, rgba(0,160,255,0.03) 0%, transparent 40%),
+    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+  background-size:100% 100%, 100% 100%, 48px 48px, 48px 48px;
 }
 .clients-grid{
-  display:flex; flex-direction:column; gap:16px;
-  max-width:480px; margin:0 auto; padding:0 20px 72px;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:16px;
+  max-width:1600px; margin:0 auto; padding:0 20px 56px;
 }
 .client-banner{
   border-radius:14px; overflow:hidden; position:relative;
@@ -274,12 +300,14 @@ body{
   pointer-events:none;
 }
 
-@media(min-width:520px){
-  .clients-grid{ padding:0 24px 72px; }
+@media(min-width:600px){
+  .clients-grid{ padding:0 24px 56px; }
 }
-@media(min-width:900px){
-  .clients-grid{ max-width:960px; flex-direction:row; padding:0 40px 80px; }
-  .client-banner{ flex:1; }
+@media(min-width:768px){
+  .clients-grid{ grid-template-columns:1fr 1fr; padding:0 32px 64px; gap:20px; }
+}
+@media(min-width:1200px){
+  .clients-grid{ padding:0 48px 72px; gap:24px; }
 }
 </style>
 </head>
@@ -295,7 +323,6 @@ body{
   <div class="hero-rule"></div>
   <p class="hero-desc">Building things that work the way they should — apps, games, and systems with a designer's eye and a maker's conviction.</p>
   <a class="hero-cta" href="#clients">View the Work ↓</a>
-  <div class="hero-scroll">scroll</div>
 </section>
 
 <!-- ── DISCIPLINES ── -->
