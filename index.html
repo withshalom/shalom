@@ -190,6 +190,39 @@ body{
   line-height:1.4; height:1.4em; flex:0 0 auto;
 }
 
+/* full-width enter-site button below each embedded card — thumb-sized, never overlaps the interactive canvas */
+.card-enter{
+  display:flex; align-items:center; justify-content:center;
+  width:100%; flex:0 0 auto;
+  margin-top:8px;
+  padding:18px 12px;
+  min-height:58px;
+  font-family:var(--fn); font-size:18px; letter-spacing:.42em; text-transform:uppercase;
+  color:var(--ce-c, #4ad9ff);
+  background:var(--ce-bg, rgba(74,217,255,0.08));
+  border:2px solid var(--ce-b, rgba(74,217,255,0.4));
+  border-radius:8px;
+  text-decoration:none;
+  text-indent:.42em; /* visually re-centers text given the heavy right-side letter-spacing */
+  transition:background .18s, border-color .18s, box-shadow .18s;
+}
+.card-enter:hover, .card-enter:active{
+  background:var(--ce-bg-hover, rgba(74,217,255,0.18));
+  border-color:var(--ce-c, #4ad9ff);
+  box-shadow:0 0 18px -4px var(--ce-c, #4ad9ff);
+}
+@media(min-width:900px){
+  .card-enter{ font-size:22px; letter-spacing:.46em; padding:20px 14px; min-height:64px; }
+}
+
+/* per-app accent themes — blue/cyan family, varied per app */
+.card-enter--loom{ --ce-c:#ff3030; --ce-bg:rgba(255,48,48,0.08); --ce-b:rgba(255,48,48,0.4); --ce-bg-hover:rgba(255,48,48,0.18); }
+.card-enter--kad{ --ce-c:#38bdf8; --ce-bg:rgba(56,189,248,0.08); --ce-b:rgba(56,189,248,0.4); --ce-bg-hover:rgba(56,189,248,0.18); }
+.card-enter--stario{ --ce-c:#22d3ee; --ce-bg:rgba(34,211,238,0.08); --ce-b:rgba(34,211,238,0.4); --ce-bg-hover:rgba(34,211,238,0.18); }
+.card-enter--ds{ --ce-c:#2dd4bf; --ce-bg:rgba(45,212,191,0.08); --ce-b:rgba(45,212,191,0.4); --ce-bg-hover:rgba(45,212,191,0.18); }
+.card-enter--hg{ --ce-c:#60a5fa; --ce-bg:rgba(96,165,250,0.08); --ce-b:rgba(96,165,250,0.4); --ce-bg-hover:rgba(96,165,250,0.18); }
+.card-enter--an{ --ce-c:#00e5ff; --ce-bg:rgba(0,229,255,0.08); --ce-b:rgba(0,229,255,0.4); --ce-bg-hover:rgba(0,229,255,0.18); }
+
 /* ── ABOUT / FOOTER ── */
 .about{
   background:var(--bg2);
@@ -423,36 +456,42 @@ body{
     <div class="card-slot">
       <div class="card-label">Music · LOOM Suite</div>
       <div class="card-frame-wrap"><iframe class="card-frame" id="frame-loom" scrolling="no" title="LOOM Suite"></iframe></div>
+      <a class="card-enter card-enter--loom" href="https://loom.withshalom.com" target="_blank" rel="noopener">ENTER SITE</a>
     </div>
 
     <!-- 2. KADsuite -->
     <div class="card-slot">
       <div class="card-label">CAD · KADsuite</div>
       <div class="card-frame-wrap"><iframe class="card-frame" id="frame-kad" scrolling="no" title="KADsuite"></iframe></div>
+      <a class="card-enter card-enter--kad" href="https://kadsuite.com" target="_blank" rel="noopener">ENTER SITE</a>
     </div>
 
     <!-- 3. Super Stario Bros -->
     <div class="card-slot">
       <div class="card-label">Game · Super Stario Bros</div>
       <div class="card-frame-wrap"><iframe class="card-frame" id="frame-stario" scrolling="no" title="Super Stario Bros"></iframe></div>
+      <a class="card-enter card-enter--stario" href="https://bros.withshalom.com" target="_blank" rel="noopener">ENTER SITE</a>
     </div>
 
     <!-- 4. Dungeon Seekers -->
     <div class="card-slot">
       <div class="card-label">Game · Dungeon Seekers</div>
       <div class="card-frame-wrap"><iframe class="card-frame" id="frame-ds" scrolling="no" title="Dungeon Seekers"></iframe></div>
+      <a class="card-enter card-enter--ds" href="https://dungeon.withshalom.com" target="_blank" rel="noopener">ENTER SITE</a>
     </div>
 
     <!-- 5. Hero's Gambit -->
     <div class="card-slot">
       <div class="card-label">Strategy · Hero's Gambit</div>
       <div class="card-frame-wrap"><iframe class="card-frame" id="frame-hg" scrolling="no" title="Hero's Gambit"></iframe></div>
+      <a class="card-enter card-enter--hg" href="https://gambit.withshalom.com" target="_blank" rel="noopener">ENTER SITE</a>
     </div>
 
     <!-- 6. Android -->
     <div class="card-slot">
       <div class="card-label">Game · ANDROID</div>
       <div class="card-frame-wrap"><iframe class="card-frame" id="frame-an" scrolling="no" title="ANDROID"></iframe></div>
+      <a class="card-enter card-enter--an" href="https://android.withshalom.com" target="_blank" rel="noopener">ENTER SITE</a>
     </div>
 
   </div>
