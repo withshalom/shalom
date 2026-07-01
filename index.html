@@ -146,11 +146,25 @@ body{
   .cards-grid{ grid-template-columns:1fr; }
 }
 
+/* tablet — still touch-first, modest growth */
 @media(min-width:768px){
-  .cards-grid{ grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:16px; padding:6px 24px 64px; }
+  .cards-grid{ grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:16px; padding:6px 24px 64px; }
 }
-@media(min-width:1200px){
-  .cards-grid{ grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:18px; padding:6px 32px 72px; }
+
+/* laptop+ — each app gets real screen real estate instead of a thumbnail.
+   Columns are capped near the embedded widgets' own 420px design width so
+   cards reach their natural full size rather than stretching past it. */
+@media(min-width:1024px){
+  .cards-grid{
+    grid-template-columns:repeat(auto-fit, minmax(360px, 440px));
+    justify-content:center;
+    gap:28px;
+    max-width:1480px;
+    padding:8px 40px 88px;
+  }
+}
+@media(min-width:1600px){
+  .cards-grid{ gap:34px; padding:8px 48px 100px; }
 }
 
 .card-slot{
@@ -167,12 +181,24 @@ body{
   border-radius:10px;
   overflow:hidden;
   position:relative;
+  transition:box-shadow .25s ease, transform .25s ease;
 }
 @media(min-width:768px){
-  .card-frame-wrap{ height:230px; flex-basis:230px; }
+  .card-frame-wrap{ height:280px; flex-basis:280px; }
 }
-@media(min-width:1200px){
-  .card-frame-wrap{ height:250px; flex-basis:250px; }
+@media(min-width:1024px){
+  .card-frame-wrap{ height:420px; flex-basis:420px; border-radius:14px; }
+}
+@media(min-width:1600px){
+  .card-frame-wrap{ height:460px; flex-basis:460px; }
+}
+
+/* desktop hover — mouse users get an affordance touch users never see */
+@media(hover:hover) and (pointer:fine){
+  .card-slot:hover .card-frame-wrap{
+    box-shadow:0 28px 56px -20px rgba(0,0,0,0.65), 0 0 0 1px rgba(200,169,110,0.22);
+    transform:translateY(-3px);
+  }
 }
 
 /* iframe wrapper */
