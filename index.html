@@ -13,6 +13,7 @@
 <meta property="og:title" content="WithShalom Studios">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;600;700&family=Noto+Serif+Devanagari:wght@500;600;700&family=Noto+Sans+Devanagari:wght@500;600;700&family=Cinzel:wght@500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
@@ -461,15 +462,122 @@ body{
 @media(min-width:1200px){
   .clients-grid{ padding:0 48px 72px; gap:24px; }
 }
+
+/* ══════════════ BRAND SYSTEM ══════════════ */
+.brand-lockup{ display:flex; flex-direction:column; align-items:center; }
+
+.brand-icon{ width:96px; height:96px; margin-bottom:-4px; }
+@media(min-width:900px){ .brand-icon{ width:150px; height:150px; } }
+@media(min-width:1280px){ .brand-icon{ width:200px; height:200px; } }
+
+.brand-wordmark{
+  position:relative; text-align:center;
+  font-family:'Frank Ruhl Libre', serif; font-weight:600;
+  font-size:clamp(64px, 17vw, 110px); line-height:1;
+  background:linear-gradient(180deg,var(--gold-b) 0%, var(--gold) 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  letter-spacing:.005em; white-space:nowrap;
+  transform:translateX(0.2em);
+}
+@media(min-width:900px){ .brand-wordmark{ font-size:clamp(110px,12vw,180px); } }
+@media(min-width:1280px){ .brand-wordmark{ font-size:clamp(160px,11vw,210px); } }
+
+.brand-shin{ font-family:'Frank Ruhl Libre',serif; font-weight:600; display:inline-block; font-size:1.08em; vertical-align:-0.03em; margin-right:0.02em; }
+.brand-caps{ font-family:'Cinzel',serif; font-weight:600; text-transform:uppercase; font-size:0.76em; letter-spacing:.03em; }
+.brand-om{
+  display:inline-block; width:1.75em; height:1.75em; margin:0;
+  vertical-align:-0.02em; overflow:visible; transform:translate(-0.5em, 0.28em);
+}
+
+.brand-studios{
+  margin-top:2px; font-family:'Cinzel',serif; font-weight:600; font-size:32px;
+  letter-spacing:.28em; text-transform:uppercase; color:rgba(200,169,110,0.55);
+  padding-left:.28em;
+}
+@media(min-width:900px){ .brand-studios{ font-size:52px; margin-top:4px; } }
+@media(min-width:1280px){ .brand-studios{ font-size:68px; margin-top:6px; } }
+
+.brand-rule{
+  width:44px; height:1px; margin:10px auto;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:.55;
+}
+@media(min-width:900px){ .brand-rule{ width:64px; margin:14px auto; } }
+
+.brand-hebrew{
+  font-family:'Frank Ruhl Libre', serif; font-weight:500;
+  font-size:40px; letter-spacing:.08em; text-align:center;
+  background:linear-gradient(180deg,#9fb4bd 0%,#16323d 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  opacity:.22; direction:rtl;
+}
+@media(min-width:900px){ .brand-hebrew{ font-size:68px; } }
+@media(min-width:1280px){ .brand-hebrew{ font-size:88px; } }
+
+/* persistent corner mark */
+.corner-icon{
+  position:fixed; top:16px; left:16px; width:30px; height:30px; z-index:80;
+  opacity:.5; pointer-events:none;
+}
+@media(min-width:900px){ .corner-icon{ width:40px; height:40px; top:22px; left:26px; } }
+
+/* footer mark */
+.footer-icon{ width:24px; height:24px; margin:0 auto 12px; opacity:.55; }
+
+/* mid-page brand banner */
+.brand-banner{
+  display:flex; align-items:center; justify-content:center; gap:14px;
+  padding:44px 24px; border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+}
+.brand-banner .brand-icon{ width:40px; height:40px; margin:0; }
+.brand-banner-word{
+  font-family:'Frank Ruhl Libre', serif; font-weight:600; font-size:20px;
+  letter-spacing:.03em; color:var(--gold);
+}
+@media(min-width:900px){
+  .brand-banner{ padding:60px 24px; gap:20px; }
+  .brand-banner .brand-icon{ width:54px; height:54px; }
+  .brand-banner-word{ font-size:28px; }
+}
 </style>
 </head>
 <body>
 
+<!-- ── PERSISTENT CORNER MARK ── -->
+<svg class="corner-icon" viewBox="14 14 212 212" aria-hidden="true">
+  <defs>
+    <filter id="cornerGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="4.2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <circle cx="120" cy="120" r="98" fill="none" stroke="#c9962c" stroke-width="3"/>
+  <line x1="34" y1="120" x2="206" y2="120" stroke="#c9962c" stroke-opacity="0.16" stroke-width="1"/>
+  <path d="M45,95 C63,125 63,155 82,155 C100,155 100,95 120,95 C140,95 140,155 158,155 C177,155 177,125 195,95"
+        fill="none" stroke="#00eaff" stroke-width="7"
+        stroke-linecap="round" stroke-linejoin="round" filter="url(#cornerGlow)"/>
+</svg>
+
 <!-- ── HERO ── -->
 <section class="hero">
-  <div class="hero-logo">
-    <div class="hero-brand">WithShalom</div>
-    <div class="hero-brand-sub">Studios</div>
+  <div class="hero-logo brand-lockup">
+    <div class="brand-wordmark">
+      <span class="brand-shin">ש</span><span class="brand-caps">ithShalo</span><svg class="brand-om" viewBox="0 0 100 100" aria-label="Om, standing in for M">
+        <defs>
+          <linearGradient id="heroOmGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#f5d67a"/>
+            <stop offset="1" stop-color="#c9962c"/>
+          </linearGradient>
+        </defs>
+        <text x="50" y="76" text-anchor="middle"
+              transform="rotate(-90 50 50) translate(50 50) scale(1,0.7) translate(-50 -50)"
+              font-family="'Noto Serif Devanagari','Noto Sans Devanagari',sans-serif" font-weight="500"
+              font-size="78" fill="url(#heroOmGrad)">ॐ</text>
+      </svg>
+    </div>
+
+    <div class="brand-studios">Studios</div>
+    <div class="brand-rule"></div>
+    <div class="brand-hebrew">שָׁלוֹם</div>
   </div>
   <a class="hero-cta" href="#clients">See our Clients ↓</a>
 </section>
@@ -603,8 +711,39 @@ body{
   <a class="about-cta" href="mailto:design@withshalom.com">Get in touch →</a>
 </section>
 
+<!-- ── BRAND BANNER ── -->
+<div class="brand-banner">
+  <svg class="brand-icon" viewBox="14 14 212 212" aria-hidden="true">
+    <defs>
+      <filter id="bannerGlow" x="-60%" y="-60%" width="220%" height="220%">
+        <feGaussianBlur stdDeviation="4.2" result="blur"/>
+        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+    <circle cx="120" cy="120" r="98" fill="none" stroke="#c9962c" stroke-width="3"/>
+    <line x1="34" y1="120" x2="206" y2="120" stroke="#c9962c" stroke-opacity="0.16" stroke-width="1"/>
+    <path d="M45,95 C63,125 63,155 82,155 C100,155 100,95 120,95 C140,95 140,155 158,155 C177,155 177,125 195,95"
+          fill="none" stroke="#00eaff" stroke-width="7"
+          stroke-linecap="round" stroke-linejoin="round" filter="url(#bannerGlow)"/>
+  </svg>
+  <span class="brand-banner-word">WithShalom Studios</span>
+</div>
+
 <footer class="footer">
-  All apps, games &amp; design work © 2025 WithShalom Studios · All rights reserved
+  <svg class="footer-icon" viewBox="14 14 212 212" aria-hidden="true">
+    <defs>
+      <filter id="footerGlow" x="-60%" y="-60%" width="220%" height="220%">
+        <feGaussianBlur stdDeviation="4.2" result="blur"/>
+        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+    <circle cx="120" cy="120" r="98" fill="none" stroke="#c9962c" stroke-width="3"/>
+    <line x1="34" y1="120" x2="206" y2="120" stroke="#c9962c" stroke-opacity="0.16" stroke-width="1"/>
+    <path d="M45,95 C63,125 63,155 82,155 C100,155 100,95 120,95 C140,95 140,155 158,155 C177,155 177,125 195,95"
+          fill="none" stroke="#00eaff" stroke-width="7"
+          stroke-linecap="round" stroke-linejoin="round" filter="url(#footerGlow)"/>
+  </svg>
+  <div>All apps, games &amp; design work © 2025 WithShalom Studios · All rights reserved</div>
 </footer>
 
 <script>
