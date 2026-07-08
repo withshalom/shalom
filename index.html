@@ -17,8 +17,8 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --bg:#02040a;
-  --bg2:#060810;
+  --bg:#080d1c;
+  --bg2:#0c1428;
   --border:rgba(255,255,255,0.06);
   --gold:#c8a96e;
   --gold-b:#f0cc7a;
@@ -59,8 +59,8 @@ body{
   content:'';
   position:absolute; inset:0; pointer-events:none;
   background-image:
-    linear-gradient(rgba(255,255,255,0.018) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,0.018) 1px,transparent 1px);
+    linear-gradient(rgba(255,255,255,0.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.05) 1px,transparent 1px);
   background-size:48px 48px;
 }
 .hero-eyebrow{
@@ -102,8 +102,8 @@ body{
   background-image:
     radial-gradient(ellipse at 50% 0%, rgba(180,140,60,0.07) 0%, transparent 55%),
     radial-gradient(ellipse at 80% 100%, rgba(0,160,255,0.03) 0%, transparent 40%),
-    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
   background-size:100% 100%, 100% 100%, 48px 48px, 48px 48px;
 }
 .section-head{
@@ -127,8 +127,8 @@ body{
   background-image:
     radial-gradient(ellipse at 50% 0%, rgba(180,140,60,0.07) 0%, transparent 55%),
     radial-gradient(ellipse at 80% 100%, rgba(0,160,255,0.03) 0%, transparent 40%),
-    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
   background-size:100% 100%, 100% 100%, 48px 48px, 48px 48px;
 }
 .cards-grid{
@@ -381,8 +381,8 @@ body{
   background-image:
     radial-gradient(ellipse at 50% 0%, rgba(180,140,60,0.07) 0%, transparent 55%),
     radial-gradient(ellipse at 80% 100%, rgba(0,160,255,0.03) 0%, transparent 40%),
-    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
   background-size:100% 100%, 100% 100%, 48px 48px, 48px 48px;
 }
 .clients-grid{
@@ -471,22 +471,26 @@ body{
 @media(min-width:1280px){ .brand-icon{ width:200px; height:200px; } }
 
 .brand-wordmark{
-  position:relative; text-align:center;
+  position:relative;
+  display:flex; align-items:baseline; justify-content:center;
+  direction:ltr; unicode-bidi:isolate;
   font-family:'Frank Ruhl Libre', serif; font-weight:600;
   font-size:clamp(64px, 17vw, 110px); line-height:1;
   background:linear-gradient(180deg,var(--gold-b) 0%, var(--gold) 100%);
   -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
   letter-spacing:.005em; white-space:nowrap;
-  transform:translateX(0.2em);
+  transform:translateX(0.27em);
 }
 @media(min-width:900px){ .brand-wordmark{ font-size:clamp(110px,12vw,180px); } }
 @media(min-width:1280px){ .brand-wordmark{ font-size:clamp(160px,11vw,210px); } }
 
-.brand-shin{ font-family:'Frank Ruhl Libre',serif; font-weight:600; display:inline-block; font-size:1.08em; vertical-align:-0.03em; margin-right:0.02em; }
+.brand-shin{ font-family:'Frank Ruhl Libre',serif; font-weight:600; display:inline-block; font-size:1.08em; vertical-align:-0.03em; margin-right:0.02em; direction:ltr; unicode-bidi:bidi-override; }
 .brand-caps{ font-family:'Cinzel',serif; font-weight:600; text-transform:uppercase; font-size:0.76em; letter-spacing:.03em; }
 .brand-om{
-  display:inline-block; width:1.75em; height:1.75em; margin:0;
-  vertical-align:-0.02em; overflow:visible; transform:translate(-0.5em, 0.28em);
+  display:inline-block; width:1.75em; height:1.75em;
+  margin-left:-0.5em;
+  vertical-align:-0.02em; overflow:visible;
+  transform:translateY(0.28em);
 }
 
 .brand-studios{
@@ -506,9 +510,9 @@ body{
 .brand-hebrew{
   font-family:'Frank Ruhl Libre', serif; font-weight:500;
   font-size:40px; letter-spacing:.08em; text-align:center;
-  background:linear-gradient(180deg,#9fb4bd 0%,#16323d 100%);
+  background:linear-gradient(180deg,#c9dce2 0%,#4a8aa3 100%);
   -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-  opacity:.22; direction:rtl;
+  opacity:.42; direction:rtl;
 }
 @media(min-width:900px){ .brand-hebrew{ font-size:68px; } }
 @media(min-width:1280px){ .brand-hebrew{ font-size:88px; } }
